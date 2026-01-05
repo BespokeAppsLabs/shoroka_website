@@ -30,14 +30,21 @@ export function Navbar() {
           </Link>
         </div>
 
-        <div className="hidden md:flex items-center gap-8">
-          {["Home", "Services", "About", "Contact"].map((item) => (
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
+          {[
+            { name: "Home", href: "#hero" },
+            { name: "Our Mission", href: "#mission" },
+            { name: "Why Shoroka", href: "#trust" },
+            { name: "Services", href: "#services" },
+            { name: "About Us", href: "#about" },
+            { name: "Contact", href: "#contact" },
+          ].map((item) => (
             <Link
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="text-sm font-medium text-foreground/70 hover:text-shoroka-gold transition-colors tracking-widest uppercase"
+              key={item.name}
+              href={item.href}
+              className="text-sm font-medium text-foreground/70 hover:text-shoroka-gold transition-colors tracking-widest uppercase whitespace-nowrap"
             >
-              {item}
+              {item.name}
             </Link>
           ))}
         </div>

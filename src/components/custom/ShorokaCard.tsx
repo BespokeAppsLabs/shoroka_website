@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import Image from "next/image";
 import { type HTMLMotionProps, motion } from "motion/react";
 import type * as React from "react";
 import { cn } from "@/lib/utils";
@@ -11,6 +13,7 @@ interface ShorokaCardProps extends HTMLMotionProps<"div"> {
   badge?: React.ReactNode;
   footer?: React.ReactNode;
   children?: React.ReactNode;
+  image?: string;
 }
 
 export function ShorokaCard({
@@ -20,6 +23,7 @@ export function ShorokaCard({
   badge,
   footer,
   children,
+  image,
   className,
   ...props
 }: ShorokaCardProps) {
@@ -33,6 +37,21 @@ export function ShorokaCard({
       whileHover={{ y: -4 }}
       {...props}
     >
+      {/* Background Image & Overlay */}
+      {image && (
+        <>
+          <div className="absolute inset-0 z-0">
+            <Image
+              src={image}
+              alt={title || "Service background"}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+          </div>
+          <div className="absolute inset-0 z-0 bg-background/80" />
+        </>
+      )}
+
       {/* Decorative Soft Glow Corner */}
       <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-primary/5 blur-2xl transition-all group-hover:bg-primary/10" />
 

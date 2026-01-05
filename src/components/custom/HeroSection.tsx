@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { HeroParallax } from "@/components/ui/hero-parallax";
@@ -87,53 +88,54 @@ const products = [
 
 export function HeroSection() {
   return (
-    <HeroParallax
-      products={products}
-      title={
-        <>
-          Shoroka <br />{" "}
-          <span className="text-shoroka-gold italic font-serif">Creations</span>
-        </>
-      }
-      description={
-        <div className="space-y-4">
-          <p className="text-xl md:text-2xl text-muted-foreground">
-            Forging digital legacies from the soil up. We blend tactical
-            precision with premium aesthetics to create experiences that command
-            authority.
-          </p>
-          <div className="flex gap-4 pt-4">
-            <button
-              type="button"
-              className="px-8 py-3 bg-shoroka-gold text-shoroka-purple font-bold rounded-full hover:scale-105 transition-transform"
-            >
-              EXPLORE OUR FLEET
-            </button>
-            <button
-              type="button"
-              className="px-8 py-3 border border-foreground/20 bg-foreground/5 backdrop-blur-md text-foreground font-bold rounded-full hover:bg-foreground/10 transition-colors"
-            >
-              OUR MISSION
-            </button>
+    <div id="hero">
+      <HeroParallax
+        products={products}
+        title={
+          <>
+            Architects of <br />{" "}
+            <span className="text-shoroka-gold italic font-serif">Legacy</span>
+          </>
+        }
+        description={
+          <div className="space-y-4">
+            <p className="text-xl md:text-2xl text-muted-foreground">
+              Born of the soil, driven by the mind. Building on our inheritance to
+              engineer certainty for the giants of tomorrow.
+            </p>
+            <div className="flex gap-4 pt-4">
+              <Link
+                href="#contact"
+                className="px-8 py-3 bg-shoroka-gold text-shoroka-purple font-bold rounded-full hover:scale-105 transition-transform flex items-center justify-center"
+              >
+                REQUEST A QUOTE
+              </Link>
+              <Link
+                href="#services"
+                className="px-8 py-3 border border-foreground/20 bg-foreground/5 backdrop-blur-md text-foreground font-bold rounded-full hover:bg-foreground/10 transition-colors flex items-center justify-center"
+              >
+                VIEW SERVICES
+              </Link>
+            </div>
           </div>
-        </div>
-      }
-      logo={
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="w-64 h-64 md:w-80 md:h-80 relative"
-        >
-          <Image
-            src="/images/hero/logo.png"
-            alt="Shoroka Logo"
-            fill
-            className="object-contain"
-          />
-        </motion.div>
-      }
-    />
+        }
+        logo={
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="w-64 h-64 md:w-80 md:h-80 relative"
+          >
+            <Image
+              src="/images/hero/logo.png"
+              alt="Shoroka Logo"
+              fill
+              className="object-contain"
+            />
+          </motion.div>
+        }
+      />
+    </div>
   );
 }

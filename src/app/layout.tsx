@@ -32,6 +32,8 @@ export const metadata: Metadata = {
 import { CombinedBackground } from "@/components/custom/CombinedBackground";
 import { Navbar } from "@/components/custom/Navbar";
 
+import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -50,12 +52,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <CombinedBackground />
-          <Navbar />
-          <div className="relative z-10 w-full overflow-x-hidden">
-            {children}
-          </div>
-          <Toaster richColors position="top-right" />
+          <SmoothScrollProvider>
+            <CombinedBackground />
+            <Navbar />
+            <div className="relative z-10 w-full overflow-x-hidden">
+              {children}
+            </div>
+            <Toaster richColors position="top-right" />
+          </SmoothScrollProvider>
         </ThemeProvider>
       </body>
     </html>
