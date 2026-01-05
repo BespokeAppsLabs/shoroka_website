@@ -1,26 +1,146 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Tailwind v4 Theme Configuration */
+@theme {
+  /* Shoroka Brand Colors */
+  --color-shoroka-purple: #33206e;
+  --color-shoroka-gold: #c7a963;
+  --color-shoroka-gold-bright: #e6c200;
+  --color-shoroka-gold-deep: #a88930;
+
+  /* Base semantic colors - Dark Mode defaults */
+  --color-background: #0a0a0c;
+  --color-foreground: #f9fafb;
+  --vignette-color: 0, 0, 0;
+
+  --color-primary: #33206e;
+  --color-primary-foreground: #c7a963;
+
+  --color-secondary: #16161d;
+  --color-secondary-foreground: #f9fafb;
+
+  --color-accent: #c7a963;
+  --color-accent-foreground: #33206e;
+
+  --color-muted: #16161d;
+  --color-muted-foreground: #8b9aab;
+
+  --color-card: #16161d;
+  --color-card-foreground: #f9fafb;
+
+  --color-popover: #16161d;
+  --color-popover-foreground: #f9fafb;
+
+  --color-border: rgba(51, 32, 110, 0.2);
+  --color-input: rgba(51, 32, 110, 0.3);
+  --color-ring: #c7a963;
+
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #fafafa;
+
+  /* Border radius */
+  --radius-lg: 1rem;
+  --radius-md: 0.5rem;
+  --radius-sm: 0.25rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Light mode overrides */
+.light {
+  --color-background: #ffffff;
+  --color-foreground: #33206e;
+
+  --color-primary: #33206e;
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: #f3f4f6;
+  --color-secondary-foreground: #33206e;
+
+  --color-accent: #a88930;
+  --color-accent-foreground: #ffffff;
+
+  --color-muted: #f3f4f6;
+  --color-muted-foreground: #6b7280;
+
+  --color-card: #ffffff;
+  --color-card-foreground: #33206e;
+
+  --color-popover: #ffffff;
+  --color-popover-foreground: #33206e;
+
+  --color-border: rgba(51, 32, 110, 0.15);
+  --color-input: rgba(51, 32, 110, 0.2);
+  --color-ring: #33206e;
+  --vignette-color: 51, 32, 110;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply text-foreground;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
+    background: transparent;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Noise/Grain Texture Overlay */
+.noise-underlay::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  animation: grain 8s steps(10) infinite;
+  pointer-events: none;
+}
+
+@keyframes grain {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  10% {
+    transform: translate(-5%, -10%);
+  }
+
+  20% {
+    transform: translate(-15%, 5%);
+  }
+
+  30% {
+    transform: translate(7%, -25%);
+  }
+
+  40% {
+    transform: translate(-5%, 25%);
+  }
+
+  50% {
+    transform: translate(-15%, 10%);
+  }
+
+  60% {
+    transform: translate(15%, 0%);
+  }
+
+  70% {
+    transform: translate(0%, 15%);
+  }
+
+  80% {
+    transform: translate(3%, 35%);
+  }
+
+  90% {
+    transform: translate(-10%, 10%);
+  }
 }
